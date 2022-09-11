@@ -4,13 +4,20 @@ Vue.use(VueRouter);
 
 
 /* Import components */
+import HomeComponent from '@/components/HomeComponent.vue'
 import InitiatePoolComponent from '@/components/InitiatePoolComponent.vue'
 import FindPoolComponent from '@/components/FindPoolComponent.vue'
+import LoginComponent from '@/components/LoginComponent.vue'
+import SignUpComponent from '@/components/SignUpComponent.vue'
 
 /* Define methods for router guard */ 
 
 /* Define router */ 
 const routes = [
+    {
+        path: '/',
+        component: HomeComponent
+    },
     {
         path: '/initiatepool',
         component: InitiatePoolComponent
@@ -18,6 +25,14 @@ const routes = [
     {
         path: '/findpool',
         component: FindPoolComponent
+    },
+    {
+        path: '/login',
+        component: LoginComponent
+    },
+    {
+        path: '/signup',
+        component: SignUpComponent
     }
 ];
 

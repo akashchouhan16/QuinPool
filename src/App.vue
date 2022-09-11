@@ -3,14 +3,14 @@
     <v-navigation-drawer
       v-model="drawer"
       app
-      color="blue">
+      color="black">
       <v-list-item>
         <v-list-item-content  class="white--text">
-          <v-list-item-title class="text-h6">
+          <v-list-item-title class="text-h5">
             QuinPool
           </v-list-item-title>
-          <v-list-item-subtitle>
-            CarPool Service
+          <v-list-item-subtitle class="white--text">
+            &copy; 2022 | Quinbay
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -26,6 +26,7 @@
           :key="item.title"
           :to="item.to"
           link
+          class="white--text"
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -39,10 +40,10 @@
     </v-navigation-drawer>
 
 
-    <v-app-bar app color="blue">
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar app color="black" elevate-on-scroll>
+      <v-app-bar-nav-icon @click="drawer = !drawer" color="white"></v-app-bar-nav-icon>
 
-      <v-toolbar-title  class="white--text">Quinbay CarPool</v-toolbar-title>
+      <v-toolbar-title  class="white--text">QuinPool</v-toolbar-title>
     </v-app-bar>
 
     <v-main class="ma-5" color="white">
@@ -58,7 +59,9 @@
        items: [
           { title: 'Home', icon: 'mdi-home', to: '/' },
           { title: 'Find Pool', icon: 'mdi-car-search-outline', to: '/findpool' },
-          { title: 'Initiate Pool', icon: 'mdi-car-3-plus', to:'/initiatepool' }
+          { title: 'Initiate Pool', icon: 'mdi-car-3-plus', to:'/initiatepool' },
+          { title: 'Log In', icon: 'mdi-login', to: '/login'},
+          { title: 'Sign Up', icon: 'mdi-account-plus', to: 'signup'}
         ],
         right: null,  
     }),
@@ -67,9 +70,9 @@
 
 
 
-<style scoped>
+<style>
 .v-main__wrap{
-  flex: 1 1 auto;
+    flex: 1 1 auto;
     max-width: 100%;
     position: relative;
     background-color: whitesmoke;
@@ -81,5 +84,6 @@
     align-content: center;
     justify-content: center;
     align-items: center;
+    /* height: 200vh; */
 }
 </style>
