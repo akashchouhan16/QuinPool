@@ -9,7 +9,7 @@
           <v-list-item-title class="text-h5">
             QuinPool
           </v-list-item-title>
-          <v-list-item-subtitle class="white--text">
+          <v-list-item-subtitle>
             &copy; 2022 | Quinbay
           </v-list-item-subtitle>
         </v-list-item-content>
@@ -46,7 +46,7 @@
       <v-toolbar-title  class="white--text">QuinPool</v-toolbar-title>
     </v-app-bar>
 
-    <v-main class="ma-5" color="white">
+    <v-main class="" color="white">
       <router-view></router-view>
     </v-main>
   </v-app>
@@ -79,7 +79,7 @@
 .v-main__wrap{
     flex: 1 1 auto;
     /* max-width: 100%; */
-    width: 90vw;
+    width: 100vw;
     position: relative;
     background-color: whitesmoke;
     border-radius: 1em;
@@ -106,12 +106,18 @@
     align-items: center;
     height: 100%;
 }
+v-list-item-subtitle {
+  color: #b8b6b6 !important;
+  font-size: xx-small !important;
+}
 @media screen and (max-width:450px){
   .v-application .ma-5{
     margin: 0 !important;
   }
-  .v-main ma-5{
-    margin: 0 !important; 
+}
+@media screen and (max-width:450px){
+  .v-application .ma-5{
+    margin: 0 !important;
   }
   .v-main__wrap{
     flex: 1 1 auto;

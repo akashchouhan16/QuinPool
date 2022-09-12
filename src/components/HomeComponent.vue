@@ -4,7 +4,7 @@
       <p class="text-h5">loading...</p>
     </v-container>
     <div class="main-container" v-else>
-      <h2>Welcome to QuinPool</h2>
+      <h2 class="text-h4">Welcome to QuinPool</h2>
 
       <div class="child-main-container">
         <img
@@ -82,6 +82,18 @@ v-btn {
   margin: 1em;
 }
 
+@media screen and (max-width: 700px){
+  .home-btns{
+    width: 22rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+  }
+}
+
 @media screen  and (max-width: 450px){
 
   .child-main-container{
@@ -106,6 +118,7 @@ v-btn {
     height: 15vh;
   }
   img{
+    width: 208px;
     min-width: 12rem !important;
     margin-bottom: 1em;
   }
