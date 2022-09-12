@@ -8,9 +8,8 @@
         <div class="form-input">
           <v-text-field
             v-model="user.username"
-            counter
             :rules="[rules.required, rules.min, rules.max, rules.name]"
-            label="Name"
+            label="User Name"
             color="black"
             required
           ></v-text-field>
@@ -19,12 +18,11 @@
           <v-text-field
             v-model="user.password"
             :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required, rules.min, rules.max]"
+            :rules="[rules.required, rules.minpass, rules.maxpass]"
             :type="show ? 'text' : 'password'"
             name="input-15-1"
             label="Password"
             color="black"
-            counter
             @click:append="show = !show"
           ></v-text-field>
         </div>

@@ -10,7 +10,8 @@ export default {
                 required: v => !!v || 'Required',
                 min: v => (v && v.length >= 3) || 'Min 3 characters',
                 max: v => (v && v.length <= 15) || 'Max 15 characters',
-                
+                minpass: v => (v && v.length >= 5) || 'Min 5 characters',
+                maxpass: v => (v && v.length <= 20) || 'Max 20 characters',
                 name: v => {
                     const namepattern = /[^A-Za-z0-9]/;
                     return (
