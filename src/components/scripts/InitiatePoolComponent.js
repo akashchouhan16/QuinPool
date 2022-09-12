@@ -1,3 +1,5 @@
+import preloaderMixin from '@/mixins/preloader.mixin'
+
 export default {
     name: 'InitiatePoolComponent',
     data(){
@@ -5,6 +7,7 @@ export default {
 
         }
     },
+    mixins: [preloaderMixin],
     methods:{
         
     }

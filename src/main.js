@@ -7,7 +7,7 @@ import "vuetify-daterange-picker/dist/vuetify-daterange-picker.css";
 import VuetifyDaterangePicker from "vuetify-daterange-picker";
 Vue.use(VuetifyDaterangePicker);
 Vue.use(VueToast, {
-  position: "top-right",
+  position: "bottom-right",
   duration: 2000
 });
 

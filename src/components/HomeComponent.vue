@@ -1,27 +1,26 @@
 <template>
   <div class="home-container">
-    <v-container v-if="isLoading">
-      <v-row>
-        <v-col cols="6" md="6">
-          <v-skeleton-loader
-            type="card-avatar, article, actions"
-          ></v-skeleton-loader>
-
-          <v-skeleton-loader type="date-picker"></v-skeleton-loader>
-        </v-col>
-
-        <v-col cols="6" md="6">
-          <v-skeleton-loader type="article, actions"></v-skeleton-loader>
-
-          <v-skeleton-loader
-            type="table-heading, list-item-two-line, image, table-tfoot"
-          ></v-skeleton-loader>
-        </v-col>
-      </v-row>
+    <v-container class="loading-container" v-if="isLoading">
+      <p class="text-h5">loading...</p>
     </v-container>
     <div class="main-container" v-else>
-      <h1>Welcome to QuinPool</h1>
-      <v-btn elevation="2" @click="completeSetUp()">Click To Complete Setup</v-btn>
+      <h2 class="text-h4">Welcome to QuinPool</h2>
+
+      <div class="child-main-container">
+        <img
+          src="@/assets/108929-drive-blue.gif"
+          alt="car-pool-app"
+        />
+
+        <div class="home-btns">
+          <v-btn elevation="2" @click="initiatePool()" color="secondary"
+            >Initiate A Pool</v-btn
+          >
+          <v-btn elevation="2" color="success" @click="findPool()"
+            >Find a Pool</v-btn
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -29,4 +28,99 @@
 <script src="./scripts/HomeComponent.js"></script>
 
 <style scoped>
+.main-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: white;
+  border-radius: 1em;
+  padding: 1em;
+  flex-wrap: nowrap;
+  align-content: center;
+}
+.loading-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+img {
+  width: 250px;
+  min-width: 20rem;
+  margin-bottom: 1em;
+}
+.home-btns {
+  width: 30rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+}
+.child-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid whitesmoke;
+  padding: 1em;
+  border-radius: 1em;
+}
+.child-main-container>img{
+  border-radius: 1em;
+}
+
+v-btn {
+  margin: 1em;
+}
+
+@media screen and (max-width: 700px){
+  .home-btns{
+    width: 22rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+  }
+}
+
+@media screen  and (max-width: 450px){
+
+  .child-main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid whitesmoke;
+    padding: 1em;
+    border-radius: 1em;
+    width: 83vw;
+    height: 68vh;
+  }
+  .home-btns {
+    width: 30rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    height: 15vh;
+  }
+  img{
+    width: 208px;
+    min-width: 12rem !important;
+    margin-bottom: 1em;
+  }
+}
 </style>
