@@ -8,22 +8,29 @@ export default{
         }
     },
     created(){
-       this.loadData();
-       Vue.$toast.open({
-            message: 'Welcome Back!',
-            type: 'default',
-            position: "top",
-            duration: 3000
-       });
+        setInterval(()=>{
+            this.isLoading = false;
+        },500);
     },
     methods:{
-        loadData(){
-            setInterval(()=>{
-                this.isLoading = false;
-            },2000);
-        },
         completeSetUp(){
             Vue.$toast.warning('Setup could not be complete')
+        },
+        initiatePool(){
+            Vue.$toast.open({
+                message: 'Initiating a pool ride...',
+                type: 'default',
+                duration: 3000
+            })
+            this.$router.push({path: '/initiatepool'});
+        },
+        findPool(){
+            Vue.$toast.open({
+                message: 'Finding nearby pool rides...',
+                type: 'default',
+                duration: 3000
+            })
+            this.$router.push({path: '/findpool'});
         }
     }
 }
