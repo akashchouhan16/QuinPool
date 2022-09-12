@@ -90,6 +90,19 @@ export default {
         rules: {
           required: value => !!value || 'Required.',
           min: v => v.length >= 5 || 'Min 5 characters',
+          pass: v => {
+
+            const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
+
+            return (
+
+                pattern.test(v) ||
+
+                "Min 8 characters with at least one uppercase letter,a lowercase letter, a number and a special character"
+
+            );
+
+        },
         //  emailMatch: () => (`The email and password you entered don't match`),
         },
       checkbox: false,
