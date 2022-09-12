@@ -7,6 +7,6 @@ export default {
     created(){
         setInterval(()=>{
             this.isLoading = false;
-        },1000);
+        },1500);
     },
 }

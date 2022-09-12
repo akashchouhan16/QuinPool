@@ -1,9 +1,8 @@
 <template>
   <div class="home-container">
-    <v-container class="loading-container" v-if="isLoading">
-      <p class="text-h5">loading...</p>
-    </v-container>
-    <div class="main-container" v-else>
+    <preloaderComponent></preloaderComponent>
+
+    <div class="main-container" v-if="!isLoading">
       <h2 class="text-h4">Welcome to QuinPool</h2>
 
       <div class="child-main-container">

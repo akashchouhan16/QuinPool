@@ -1,9 +1,9 @@
 <template>
   <div class="find-pool-container">
-    <div class="preloader" v-if="isLoading">
-      <p class="text-h5">loading...</p>
-    </div>
-    <div class="find-pool-inner-container" v-else>
+  
+    <preloaderComponent></preloaderComponent>
+
+    <div class="find-pool-inner-container" v-if="!isLoading">
       <p class="text-h6 mt-3">Find A Pool Ride</p>
       <div class="map" id="map"></div>
       <div class="selector-div">
@@ -72,10 +72,10 @@
   </div>
 </template>
 
-<script src="./scripts/FindPoolComponent.js">
-</script>
+<script src="./scripts/FindPoolComponent.js"></script>
 
 <style scoped>
+
 #map {
   height: 50vh;
   width: 80vw;
@@ -115,7 +115,7 @@
 }
 .find-pool-container .selector-div {
   height: 7%;
-  width: 20%;
+  width: 25%;
   position: absolute;
   top: 0;
   right: 0;
@@ -183,6 +183,16 @@
     align-content: center;
     justify-content: space-evenly;
     align-items: center;
+  }
+  .find-pool-container .selector-div {
+    height: 10% !important;
+    width: 95% !important;
+    position: absolute;
+    top: 0;
+    /* right: 0; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: space-around;
   }
 }
 

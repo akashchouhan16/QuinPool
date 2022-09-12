@@ -1,4 +1,6 @@
 import preloaderMixin from "@/mixins/preloader.mixin";
+import preloaderComponent from '@/components/customComponent/preloaderComponent.vue'
+
 import Vue from "vue";
 // import 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly'
 export default {
@@ -14,6 +16,9 @@ export default {
       message: false,
       hints: true,
     };
+  },
+  components:{
+    preloaderComponent
   },
   mixins: [preloaderMixin],
   created() {

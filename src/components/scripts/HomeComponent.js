@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import preloaderMixin from '@/mixins/preloader.mixin'
+import preloaderComponent from '@/components/customComponent/preloaderComponent.vue'
 export default{
     name: 'HomeComponent',
     data(){
         return {
             isLoading: true
         }
+    },
+    components:{
+        preloaderComponent
     },
     mixins: [preloaderMixin],
     methods:{

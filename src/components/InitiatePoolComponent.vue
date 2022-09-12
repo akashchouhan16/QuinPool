@@ -1,9 +1,7 @@
 <template>
     <div class="initiate-pool-container">
-        <div class="preloader" v-if="isLoading">
-            <p class="text-h5">loading...</p>
-        </div>
-        <div class="initiate-pool-inner-container" v-else>
+        <preloaderComponent></preloaderComponent>
+        <div class="initiate-pool-inner-container" v-if="!isLoading">
             <h1>Initiate A Pool Ride!</h1>
         </div>
     </div>
