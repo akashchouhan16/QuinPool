@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<script></script>
+<script src="./scripts/InitiatePoolComponent.js"></script>
 
 <style scoped>
     

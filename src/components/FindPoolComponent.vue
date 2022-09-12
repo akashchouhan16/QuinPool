@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<script></script>
+<script src="./scripts/FindPoolComponent.js"></script>
 
 <style scoped>
     
