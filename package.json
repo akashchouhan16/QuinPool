@@ -9,10 +9,13 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "date-fns": "^2.29.2",
+    "vee-validate": "^4.6.7",
     "vue": "^2.6.14",
     "vue-router": "^3.6.5",
     "vue-toast-notification": "^0.6.3",
     "vuetify": "^2.6.0",
+    "vuetify-daterange-picker": "^3.2.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

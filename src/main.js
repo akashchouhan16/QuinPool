@@ -3,7 +3,9 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
-
+import "vuetify-daterange-picker/dist/vuetify-daterange-picker.css";
+import VuetifyDaterangePicker from "vuetify-daterange-picker";
+Vue.use(VuetifyDaterangePicker);
 Vue.use(VueToast, {
   position: "top-right",
   duration: 2000
