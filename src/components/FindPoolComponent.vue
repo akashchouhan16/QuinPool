@@ -143,7 +143,8 @@
   /* align-content: center; */
   /* justify-content: center; */
   /* align-items: center; */
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   /* position: relative; */
 }
 .rides-header {
@@ -166,6 +167,7 @@
   align-content: center;
   justify-content: space-around;
   align-items: center;
+  overflow: scroll;
 }
 
 @media screen and (max-width: 700px) {
@@ -187,12 +189,12 @@
 @media screen and (max-width: 450px) {
   .find-pool-container .selector-div {
     height: 10%;
-    width: 90%;
+    width: 95%;
     position: absolute;
     top: 0;
     /* right: 0; */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: space-around;
   }
   .map-btns v-btn {
