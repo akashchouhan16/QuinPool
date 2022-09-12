@@ -3,7 +3,7 @@ node_modules
 /dist
 
 # lock files
-*lock*.*
+*lock*.*q
 
 # local env files
 .env.local
