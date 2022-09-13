@@ -151,6 +151,7 @@ export default {
       register(){
         var payload={
           "address":this.user.address,
+          "password":this.user.password,
           "hasVehicle": this.user.checkbox,
           "licenseExpiration":this.user.date ,
           "licenseNo": this.user.LicenseNumber,
@@ -159,7 +160,7 @@ export default {
           "username": this.user.username,
           "vehicle": {
             "brand": this.user.vehicle.vehicleBrand,
-            "capacity":this.user.vehicle.seats,
+            "capacity":parseInt(this.user.vehicle.seats),
             "color":this.user.vehicle.color,
             "name": this.user.vehicle.vehicleName,
             "vehicleNo": this.user.vehicle.vehicleNumber

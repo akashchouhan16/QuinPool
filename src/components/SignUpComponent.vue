@@ -121,7 +121,7 @@
               </v-col>
               <v-col lg="6" md="12" sm="12">
                 <v-text-field
-                  v-model="user.vehicle.LicenseNumber"
+                  v-model="user.LicenseNumber"
                   :rules="LicenseNumberRules"
                   label="License Number"
                   required
@@ -163,7 +163,7 @@
                 <v-col lg="6" md="12" sm="12">
                   <v-btn
                     @click="register()"
-                    color="#fc9403"
+                    color="black"
                     style="color: white"
                     block
                     elevation="2"
@@ -172,7 +172,7 @@
                     >Register</v-btn
                   >
                 </v-col>
-                <v-col lg="6" md="12" sm="12">
+                <!-- <v-col lg="6" md="12" sm="12">
                   <v-btn
                     @click="goLogin()"
                     color="#fc9403"
@@ -183,7 +183,7 @@
                     rounded
                     >Login</v-btn
                   >
-                </v-col>
+                </v-col> -->
               </v-row>
             </div>
           </v-row>
@@ -217,10 +217,11 @@
   /* margin-left: -90px;
   margin-right: 30px; */
   margin: auto;
-  width: 66%;
+  width: 20%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  margin-bottom: 30px;
 }
 .errortext {
   color: red;
@@ -228,5 +229,11 @@
 }
 .v-input.v-input--is-readonly.theme--light.v-text-field.v-text-field--is-booted{
   margin-top: 14px;
+}
+rounded.theme--light.elevation-2.v-size--default.black {
+  /* border-radius: 0px!important; */
+}
+.v-btn--rounded {
+    border-radius: 5px;
 }
 </style>
