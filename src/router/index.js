@@ -9,6 +9,7 @@ import InitiatePoolComponent from '@/components/InitiatePoolComponent.vue'
 import FindPoolComponent from '@/components/FindPoolComponent.vue'
 import LoginComponent from '@/components/LoginComponent.vue'
 import SignUpComponent from '@/components/SignUpComponent.vue'
+import UserRideHistoryComponent from "@/components/UserRideHistoryComponent.vue";
 
 /* Define methods for router guard */ 
 
@@ -33,6 +34,10 @@ const routes = [
     {
         path: '/signup',
         component: SignUpComponent
+    },
+    {
+        path: '/history',
+        component: UserRideHistoryComponent
     }
 ];
 
