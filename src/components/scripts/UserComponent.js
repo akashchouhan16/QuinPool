@@ -1,7 +1,22 @@
 import {getUser} from '@/services/user.service'
+import {
+    mdiAccount,
+    mdiPencil,
+    mdiShareVariant,
+    mdiDelete,
+  } from '@mdi/js'
+
 export default{
     data(){
+         
         return{
+            icons: {
+                mdiAccount,
+                mdiPencil,
+                mdiShareVariant,
+                mdiDelete,
+              },
+              dialog: false,
             user:{}
         }
     },
@@ -14,7 +29,7 @@ export default{
             error:(e)=>{
                 console.log(e)
             },
-            object:localStorage.getItem('userid')
+            object:localStorage.getItem('userId')
         })
     }
 }

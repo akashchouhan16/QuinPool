@@ -39,6 +39,7 @@ export default {
             this.$store.dispatch('LOGIN_USER', {
                 success: () => {
                     this.$router.push(this.$route.query.redirect || '/');
+                    
                 },
                 error: () => {
                     console.warn('user loggin failed.');
