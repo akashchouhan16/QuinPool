@@ -10,7 +10,7 @@ import FindPoolComponent from '@/components/FindPoolComponent.vue'
 import LoginComponent from '@/components/LoginComponent.vue'
 import SignUpComponent from '@/components/SignUpComponent.vue'
 import UserRideHistoryComponent from "@/components/UserRideHistoryComponent.vue";
-
+import UserComponent from "@/components/UserComponent.vue"
 /* Define methods for router guard */ 
 
 /* Define router */ 
@@ -38,6 +38,10 @@ const routes = [
     {
         path: '/history',
         component: UserRideHistoryComponent
+    },
+    {
+        path:'/user',
+        component:UserComponent
     }
 ];
 

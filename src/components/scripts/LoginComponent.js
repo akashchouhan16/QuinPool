@@ -40,6 +40,8 @@ export default {
             userLogin({
                 success: (response) => {
                     console.log(response)
+                    localStorage.setItem('userid',response.data.userId)
+                    console.log(localStorage.getItem('userid'))
                 },
                 error: (e) => {
                     console.warn('error', e)
