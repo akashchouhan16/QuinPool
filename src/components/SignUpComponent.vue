@@ -27,7 +27,7 @@
               <v-text-field
                 v-model="user.password"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.pass]"
+                :rules="[rules.required, rules.min,rules.pass,rules.max]"
                 :type="show1 ? 'text' : 'password'"
                 name="input-10-1"
                 label="Password"
@@ -39,7 +39,7 @@
               <v-text-field
                 v-model="user.cpassword"
                 :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required,rules.pass]"
+                :rules="[rules.required,rules.pass,rules.max]"
                 :type="show4 ? 'text' : 'password'"
                 name="input-10-2"
                 label="Confirm Password"
@@ -73,15 +73,15 @@
             </v-col>
             <v-col lg="12" md="12" sm="12">
               <v-checkbox
-                v-model="checkbox"
+                v-model="user.checkbox"
                 label="Do you have a car"
                 required
               ></v-checkbox>
             </v-col>
-            <v-row v-if="checkbox">
+            <v-row v-if="user.checkbox" cols="12" style="margin:-2px!important">
               <v-col lg="12" md="12" sm="12">
                 <v-text-field
-                  v-model="user.vehicleNumber"
+                  v-model="user.vehicle.vehicleNumber"
                   :rules="numberrules"
                   label="Vehicle Number"
                   required
@@ -89,7 +89,7 @@
               </v-col>
               <v-col lg="6" md="12" sm="12">
                 <v-text-field
-                  v-model="user.vehicleBrand"
+                  v-model="user.vehicle.vehicleBrand"
                   :rules="vehicleRules"
                   label="Vehicle Brand"
                   required
@@ -97,7 +97,7 @@
               </v-col>
               <v-col lg="6" md="12" sm="12">
                 <v-text-field
-                  v-model="user.vehicleName"
+                  v-model="user.vehicle.vehicleName"
                   :rules="vehicleRules"
                   label="Vehicle Name"
                   required
@@ -105,7 +105,7 @@
               </v-col>
               <v-col lg="6" md="12" sm="12">
                 <v-text-field
-                  v-model="user.color"
+                  v-model="user.vehicle.color"
                   :rules="colorRules"
                   label="Color"
                   required
@@ -113,7 +113,7 @@
               </v-col>
               <v-col lg="6" md="12" sm="12">
                 <v-text-field
-                  v-model="user.seats"
+                  v-model="user.vehicle.seats"
                   :rules="seatingRules"
                   label="Seating Capacity"
                   required
@@ -121,14 +121,14 @@
               </v-col>
               <v-col lg="6" md="12" sm="12">
                 <v-text-field
-                  v-model="user.LicenseNumber"
+                  v-model="user.vehicle.LicenseNumber"
                   :rules="LicenseNumberRules"
                   label="License Number"
                   required
                 ></v-text-field>
               </v-col>
-               <v-menu
-              v-if="checkbox"
+               <v-menu 
+              v-if="user.checkbox"
               ref="menu"
               v-model="menu"
               :close-on-content-click="false"
@@ -137,7 +137,7 @@
               min-width="auto"
             >
               <template v-slot:activator="{ on, attrs }">
-                <v-text-field
+                <v-text-field lg="6" md="12" sm="12"
                   v-model="user.date"
                   label="Valid Till"
                   prepend-icon="mdi-calendar"
@@ -156,7 +156,7 @@
             </v-menu>
             </v-row>
            
-            <!-- {{user.date}} -->
+            {{user.date}}
 
             <div class="reg-button">
               <v-row cols="12">
@@ -225,5 +225,8 @@
 .errortext {
   color: red;
   text-align: center;
+}
+.v-input.v-input--is-readonly.theme--light.v-text-field.v-text-field--is-booted{
+  margin-top: 14px;
 }
 </style>

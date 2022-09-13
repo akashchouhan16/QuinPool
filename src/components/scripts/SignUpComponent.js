@@ -1,5 +1,7 @@
 import { VDaterange } from "vuetify-daterange-picker"
 import "vuetify-daterange-picker/dist/vuetify-daterange-picker.css";
+import {addUser} from '../../services/user.service'
+
 export default {
     components: { VDaterange },
     data: () => ({
@@ -9,15 +11,20 @@ export default {
             password: '',
             cpassword:'',
             phone: '',
-            vehicleNumber:'',
-            seats:null,
             LicenseNumber:'',
             address:'',
-            vehicleName:'',
-            color:'',
-            vehicleBrand:'',
+            checkbox: false,
             date:'',
-            newdate:new Date().toISOString()
+            newdate:new Date().toISOString(),
+            vehicle:{
+              vehicleBrand:'',
+              vehicleName:'',
+              seats:null,
+              vehicleNumber:'', 
+            color:'',
+           
+          
+            }
 
         },
         range: {
@@ -31,13 +38,15 @@ export default {
       nameRules: [
         value => !!value || 'Name is required',
         value => (value && value.length >= 5) || 'Min 5 characters',
-        value=>/^[a-zA-Z +/.]*$/.test(value)|| "name must be valid",
+      //  value=>/^.[a-zA-Z +/.]*$/.test(value)|| "name must be valid",
+      //  value=>/^.[a-zA-Z +/.]*$/.test(value)|| "name must be valid",
+        value=>/^[A-Za-z\s]{1,}[/.]{0,1}[A-Za-z\s]{0,}$/.test(value)||"name must be valid", 
        // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
       userNameRules:[
         value => !!value || 'userName is required',
         value => (value && value.length >= 5) || 'Min 5 characters',
-        value=>/^[a-zA-Z +/.]*$/.test(value)|| "user name must be valid",
+        value=>/^[a-zA-Z0-9 +/.]*$/.test(value)|| "user name must be valid",
       ],
       
       phoneRules: [
@@ -66,7 +75,7 @@ export default {
       vehicleRules: [
         value => !!value || 'Name is required',
         value => (value && value.length >= 3) || 'Min 3 characters',
-        value=>/^[a-zA-Z +/.]*$/.test(value)|| "name must be valid",
+        value=>/^[a-zA-Z ]*$/.test(value)|| "name must be valid",
        // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
       colorRules:[
@@ -90,6 +99,7 @@ export default {
         rules: {
           required: value => !!value || 'Required.',
           min: v => v.length >= 5 || 'Min 5 characters',
+          max:v=>v.length<=20||'max 20 characters',
           pass: v => {
 
             const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
@@ -105,7 +115,7 @@ export default {
         },
         //  emailMatch: () => (`The email and password you entered don't match`),
         },
-      checkbox: false,
+     
       vehicleNumber:'',
       seats:null,
       LicenseNumber:'',
@@ -137,6 +147,33 @@ export default {
       },
       save (date) {
         this.$refs.menu.save(date)
+      },
+      register(){
+        var payload={
+          "address":this.user.address,
+          "hasVehicle": this.user.checkbox,
+          "licenseExpiration":this.user.date ,
+          "licenseNo": this.user.LicenseNumber,
+          "name": this.user.name,
+          "phoneNumber":this.user.phone,
+          "username": this.user.username,
+          "vehicle": {
+            "brand": this.user.vehicle.vehicleBrand,
+            "capacity":this.user.vehicle.seats,
+            "color":this.user.vehicle.color,
+            "name": this.user.vehicle.vehicleName,
+            "vehicleNo": this.user.vehicle.vehicleNumber
+          }
+        }
+        addUser({
+         success:(response)=>{
+          console.log(response)
+         },
+         error:(e)=>{
+            console.log('error',e)
+         },
+         object:payload
+        })
       },
     },
     computed:{
