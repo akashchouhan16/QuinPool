@@ -6,7 +6,7 @@
           <v-list-item-title class="text-h5 white--text"> QuinPool </v-list-item-title>
           <v-list-item-subtitle> &copy; 2022 | Quinbay </v-list-item-subtitle>
           <v-list-item-subtitle
-            v-if="isLoggedIn || loginStatus"
+            v-if="loginStatus"
             @click="logOutUser()" class="logout-btn white--text"
             >Log Out</v-list-item-subtitle
           >
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 import Vue from "vue";
 
 export default {
@@ -69,11 +69,11 @@ export default {
   created() {
     this.updateLoginStatus();
   },
-  computed: {
-    ...mapGetters({
-      isLoggedIn: "getLoggedInStatus",
-    }),
-  },
+  // computed: {
+  //   ...mapGetters({
+  //     isLoggedIn: "getLoggedInStatus",
+  //   }),
+  // },
   methods: {
     updateLoginStatus() {
       this.loginStatus = localStorage.getItem("isLoggedIn") === "true";
