@@ -1,9 +1,8 @@
 import preloaderMixin from "@/mixins/preloader.mixin";
 import preloaderComponent from '@/components/customComponent/preloaderComponent.vue'
-
-
 import Vue from "vue";
-// import 'https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap&v=weekly'
+
+
 export default {
   name: "FindPoolComponent",
   data() {
@@ -24,6 +23,11 @@ export default {
   mixins: [preloaderMixin],
   created() {
     this.getUserLocation();
+    Vue.$toast.open({
+      message: 'Finding nearby pool rides...',
+      type: 'default',
+      duration: 2000
+    })
   },
   methods: {
     toggleMenu(){
