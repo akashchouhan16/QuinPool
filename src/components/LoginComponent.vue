@@ -10,7 +10,7 @@
             v-model="user.username"
             :rules="[rules.required, rules.min, rules.max, rules.name]"
             label="User Name"
-            color="black"
+            color="black "
             required
           ></v-text-field>
         </div>
@@ -59,6 +59,7 @@
   border-radius: 1em;
   width: 40%;
   height: 45vh;
+  min-height:420px;
   font-size: small;
 }
 .centre {
@@ -69,7 +70,7 @@
 }
 .form-input {
   margin-bottom: 30px;
-  margin-top: 30px;
+  margin-top: 35px;
   font-size: small;
 
 }
