@@ -32,7 +32,7 @@
               :disabled="!valid"
               color="success"
               class="mr-4" small
-              @click="login()"
+              @click="validate()"
             >
               Login
             </v-btn>

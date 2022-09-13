@@ -1,4 +1,4 @@
-
+import Vue from 'vue'
 export default {
     name: 'LoginComponent',
     data() {
@@ -30,13 +30,14 @@ export default {
             console.log(this.user.username);
             console.log(this.user.password);
             this.$refs.form.validate();
-
+            this.login();
         },
         reset() {
             console.log(this.$refs.form);
             this.$refs.form.reset();
         },
         login() {
+            if(!(this.user.username===null||this.user.password===null||this.user.username===''||this.user.password===''||this.user.username===undefined||this.user.password===undefined)){
             this.$store.dispatch('LOGIN_USER', {
                 success: () => {
                     this.$router.push(this.$route.query.redirect || '/');
@@ -45,7 +46,10 @@ export default {
                     console.warn('user loggin failed.');
                 },
                 user: this.user
-            })
+            })}
+            else{
+                Vue.$toast.error("Enter the values");
+            }
         }
     }
 }
