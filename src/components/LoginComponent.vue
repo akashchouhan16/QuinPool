@@ -32,7 +32,7 @@
               :disabled="!valid"
               color="success"
               class="mr-4" small
-              @click="validate"
+              @click="login()"
             >
               Login
             </v-btn>
@@ -59,7 +59,7 @@
   border-radius: 1em;
   width: 40%;
   height: 45vh;
-  min-height:420px;
+  min-height:350px;
   font-size: small;
 }
 .centre {

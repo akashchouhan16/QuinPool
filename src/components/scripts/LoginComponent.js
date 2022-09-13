@@ -1,3 +1,4 @@
+import { userLogin } from '@/services/user.service'
 export default {
     name: 'LoginComponent',
     data() {
@@ -28,11 +29,23 @@ export default {
         validate() {
             console.log(this.user.username);
             console.log(this.user.password);
-            this.$refs.form.validate()
+            this.$refs.form.validate();
+
         },
         reset() {
             console.log(this.$refs.form);
             this.$refs.form.reset();
         },
+        login() {
+            userLogin({
+                success: (response) => {
+                    console.log(response)
+                },
+                error: (e) => {
+                    console.warn('error', e)
+                },
+                user: this.user
+            })
+        }
     }
 }
