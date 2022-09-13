@@ -16,7 +16,6 @@
           <v-spacer></v-spacer>
 
           <v-toolbar dark color="black" v-if="viewSeachBar">
-            <!-- <v-toolbar-title>State selection</v-toolbar-title> -->
             <v-autocomplete
               v-model="select"
               :loading="loading"

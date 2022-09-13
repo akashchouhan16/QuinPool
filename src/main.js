@@ -12,8 +12,8 @@ Vue.use(VueToast, {
 });
 
 
-import router from '@/router'
-import store from '@/store'
+import router from '@/router/index.js'
+import store from '@/store/index'
 
 Vue.config.productionTip = false
 

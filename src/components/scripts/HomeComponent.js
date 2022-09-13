@@ -17,20 +17,13 @@ export default{
             Vue.$toast.warning('Setup could not be complete')
         },
         initiatePool(){
-            Vue.$toast.open({
-                message: 'Initiating a pool ride...',
-                type: 'default',
-                duration: 2000
-            })
-            this.$router.push({path: '/initiatepool'});
+            
+            // const userId = localStorage.getItem('userId') === null? this.$store.getters.getUser.userId : localStorage.getItem('userId');
+            this.$router.push({path: '/initiatepool', query: { redirect: `/initiatepool`}});
         },
         findPool(){
-            Vue.$toast.open({
-                message: 'Finding nearby pool rides...',
-                type: 'default',
-                duration: 2000
-            })
-            this.$router.push({path: '/findpool'});
+            // const userId = localStorage.getItem('userId') === null? this.$store.getters.getUser.userId : localStorage.getItem('userId');
+            this.$router.push({path: '/findpool', query: { redirect: `/findpool`}});
         }
     }
 }

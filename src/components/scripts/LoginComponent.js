@@ -1,4 +1,4 @@
-import { userLogin } from '@/services/user.service'
+
 export default {
     name: 'LoginComponent',
     data() {
@@ -37,12 +37,12 @@ export default {
             this.$refs.form.reset();
         },
         login() {
-            userLogin({
-                success: (response) => {
-                    console.log(response)
+            this.$store.dispatch('LOGIN_USER', {
+                success: () => {
+                    this.$router.push(this.$route.query.redirect || '/');
                 },
-                error: (e) => {
-                    console.warn('error', e)
+                error: () => {
+                    console.warn('user loggin failed.');
                 },
                 user: this.user
             })

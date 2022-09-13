@@ -12,7 +12,35 @@ import SignUpComponent from '@/components/SignUpComponent.vue'
 import UserRideHistoryComponent from "@/components/UserRideHistoryComponent.vue";
 
 /* Define methods for router guard */ 
+const checkForLoginInitiate = (to, from, next)=>{
+    const userId = localStorage.getItem('userId');
+    const username = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
 
+    if((token === null || token === undefined || token === '') ||
+        (userId === null || userId === undefined || userId === '') ||
+        (username === null || username === undefined || username === '')){
+
+        next({path: '/login', query: { redirect: `/initiatepool?userId=${localStorage.getItem('userId')}`}});
+    }else{
+        next();
+    }
+}
+
+const checkForLoginFind = (to, from, next)=>{
+    const userId = localStorage.getItem('userId');
+    const username = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
+
+    if((token === null || token === undefined || token === '') ||
+        (userId === null || userId === undefined || userId === '') ||
+        (username === null || username === undefined || username === '')){
+
+        next({path: '/login', query: { redirect: `/findpool?userId=${localStorage.getItem('userId')}`}});
+    }else{
+        next();
+    }
+}
 /* Define router */ 
 const routes = [
     {
@@ -21,11 +49,13 @@ const routes = [
     },
     {
         path: '/initiatepool',
-        component: InitiatePoolComponent
+        component: InitiatePoolComponent,
+        beforeEnter: checkForLoginInitiate
     },
     {
         path: '/findpool',
-        component: FindPoolComponent
+        component: FindPoolComponent,
+        beforeEnter: checkForLoginFind
     },
     {
         path: '/login',
@@ -37,7 +67,8 @@ const routes = [
     },
     {
         path: '/history',
-        component: UserRideHistoryComponent
+        component: UserRideHistoryComponent,
+        // beforeEnter: checkForLogin
     }
 ];
 
