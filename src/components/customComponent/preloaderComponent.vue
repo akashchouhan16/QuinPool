@@ -1,7 +1,7 @@
 <template>
   <div class="preloader" v-if="isLoading">
     <img src="@/assets/85392-carr.gif" alt="loading.." width="250" />
-    <p class="text-h5">loading...</p>
+    <p class="text-h5">Loading...</p>
   </div>
 </template>
 
