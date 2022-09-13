@@ -21,7 +21,7 @@ const checkForLoginInitiate = (to, from, next)=>{
         (userId === null || userId === undefined || userId === '') ||
         (username === null || username === undefined || username === '')){
 
-        next({path: '/login', query: { redirect: `/initiatepool?userId=${localStorage.getItem('userId')}`}});
+        next({path: '/login', query: { redirect: `/initiatepool`}});
     }else{
         next();
     }
@@ -36,7 +36,7 @@ const checkForLoginFind = (to, from, next)=>{
         (userId === null || userId === undefined || userId === '') ||
         (username === null || username === undefined || username === '')){
 
-        next({path: '/login', query: { redirect: `/findpool?userId=${localStorage.getItem('userId')}`}});
+        next({path: '/login', query: { redirect: `/findpool`}});
     }else{
         next();
     }
