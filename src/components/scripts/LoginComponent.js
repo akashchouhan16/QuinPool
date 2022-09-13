@@ -27,8 +27,6 @@ export default {
     },
     methods: {
         validate() {
-            console.log(this.user.username);
-            console.log(this.user.password);
             this.$refs.form.validate();
             this.login();
         },
