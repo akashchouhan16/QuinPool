@@ -2,6 +2,8 @@ import preloaderMixin from "@/mixins/preloader.mixin";
 import preloaderComponent from "@/components/customComponent/preloaderComponent.vue";
 import Vue from "vue";
 
+import { getUser } from "@/services/user.service";
+
 export default {
   name: "InitiatePoolComponent",
   data() {
@@ -10,6 +12,7 @@ export default {
         latitude: null,
         longitude: null,
       },
+      userInfo: {},
       spinLoader: true,
       poolDate: null,
       poolTime: null,
@@ -22,9 +25,22 @@ export default {
     preloaderComponent,
   },
   created() {
+
     setTimeout(() => {
       this.spinLoader = false;
     }, 2500);
+    
+    getUser({
+      success: (response)=>{
+        this.userInfo = response.data;
+      },
+      error: (e)=>{
+        console.warn('Something went wrong while fetching details from backend.' + e);
+      },
+      object: localStorage.getItem('userId')
+    })
+
+
 
     this.getUserLocation();
     Vue.$toast.open({

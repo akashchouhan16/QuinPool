@@ -17,6 +17,15 @@ import store from '@/store/index'
 
 Vue.config.productionTip = false
 
+
+Vue.filter('filterUIAddress', (address)=>{
+    if(address.length <= 30)
+        return address;
+    else{
+        return address.substring(0,30) + '..';
+    }
+})
+
 new Vue({
   vuetify,
   router,
