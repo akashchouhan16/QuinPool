@@ -111,35 +111,58 @@
   </div>
     <v-card elevation="2">
       <div class="user">
-      <h3>User Details</h3> 
+      <h3>User Details</h3>
       <v-icon @click="dialog=true">{{ icons.mdiPencil }}</v-icon>
-      </div>
+      </div><br/>
         <v-row>
+          <div>
+            <v-card-text>Name:</v-card-text>
+            <v-card-text>Phone:</v-card-text>
+            <v-card-text>Address:</v-card-text>
+      
+           
+          </div>
+             <div >
+              <v-card-text>{{user.name}}</v-card-text>
+              <v-card-text>{{user.phoneNumber}}</v-card-text>
+              <v-card-text>{{user.address}}</v-card-text>
+            </div>
+           
           
-              <v-card-text>Name:{{user.name}}</v-card-text>
-            <v-card-text>Phone:{{user.phoneNumber}}</v-card-text>
-           <v-card-text>Address:{{user.address}}</v-card-text>
-        </v-row>
+        </v-row><br/>
 
         <div v-if="user.hasVehicle">
-          
+          <h3>Vehicle Details</h3><br/>
           <v-row>
+            <div>
+              
+            <v-card-text>License:</v-card-text>
+            <v-card-text>Brand:</v-card-text>
+            <v-card-text>Vehicle Name:</v-card-text> 
+          </div>
+          <div>
             <v-card-text
-              >License Number:{{user.license}}</v-card-text>
-                <v-card-text>Brand:{{user.vehicle.brand}}</v-card-text>
-              <v-card-text
-              >Vehicle Name:{{user.vehicle.name}}</v-card-text>
-                <v-card-text>Brand:{{user.vehicle.brand}}</v-card-text>
+              >{{user.license}}</v-card-text>
+              <v-card-text>{{user.vehicle.brand}}</v-card-text>
+              <v-card-text>{{user.vehicle.name}}</v-card-text>
+            
+          </div>
+    
+              <div>
+            <v-card-text>Vehicle color:</v-card-text>
+            <v-card-text>Vehicle Number:</v-card-text>
+            <v-card-text>Seats:</v-card-text> 
+          </div>
+          <div>
+            <v-card-text>{{user.vehicle.color}}</v-card-text>
+          
+          
+              <v-card-text>{{user.vehicle.vehicleNo}}</v-card-text>
+          
         
-             </v-row>
-             <v-row>
-             <v-card-text>Vehicle color:{{user.vehicle.color}}</v-card-text>
-          
-          
-              <v-card-text>Vehicle Number:{{user.vehicle.vehicleNo}}</v-card-text>
-          
-        
-               <v-card-text>Seats:{{user.vehicle.capacity}}</v-card-text>
+               <v-card-text>{{user.vehicle.capacity}}</v-card-text>
+          </div>
+             
           
           </v-row>
         </div>
@@ -183,5 +206,8 @@ form.v-form {
   flex-direction: row;
   flex-wrap: nowrap;
   margin-bottom: 30px;
+}
+.update{
+  display:flex;
 }
 </style>
