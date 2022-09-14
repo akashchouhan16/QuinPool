@@ -129,6 +129,11 @@ export default {
     },
 
     initiatePool() {
+      this.$router.push({
+        path: "/initiatepool/confirmation",
+        query: { userId: this.userInfo.id },
+      });
+
       Vue.$toast.open({
         message: "Initiated Pool Ride!",
         type: "success",

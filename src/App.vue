@@ -3,13 +3,10 @@
     <v-navigation-drawer v-model="drawer" app color="black">
       <v-list-item>
         <v-list-item-content class="white--text">
-          <v-list-item-title class="text-h5 white--text"> QuinPool </v-list-item-title>
+          <v-list-item-title class="text-h5 white--text">
+            QuinPool
+          </v-list-item-title>
           <v-list-item-subtitle> &copy; 2022 | Quinbay </v-list-item-subtitle>
-          <v-list-item-subtitle
-            v-if="isLoggedIn || loginStatus"
-            @click="logOutUser()" class="logout-btn white--text"
-            > <v-icon color="white" small>mdi-logout-variant</v-icon> Log Out</v-list-item-subtitle
-          >
         </v-list-item-content>
       </v-list-item>
 
@@ -41,6 +38,35 @@
       ></v-app-bar-nav-icon>
 
       <v-toolbar-title class="white--text">QuinPool</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <!-- <v-toolbar-subtitle right class="white--text loggedInUser"> -->
+      <v-menu
+        right
+        transition="slide-y-transition"
+        bottom
+        v-if="isLoggedIn || loginStatus"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn small color="black white--text" dark v-bind="attrs" v-on="on">
+            {{ username }}
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item>
+            <v-list-item-title class="nav-bar-items" @click="openUserProfile()">
+              <v-icon>mdi-account-circle</v-icon>
+              <span class="nav-bar-items-text"> Profile </span>
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title @click="logOutUser()"
+              ><v-icon>mdi-logout</v-icon>
+              <span class="nav-bar-items-text">Log Out</span>
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <!-- </v-toolbar-subtitle> -->
     </v-app-bar>
 
     <v-main class="" color="white">
@@ -62,9 +88,10 @@ export default {
       { title: "Find Pool", icon: "mdi-car-search-outline", to: "/findpool" },
       { title: "Initiate Pool", icon: "mdi-car-3-plus", to: "/initiatepool" },
       // { title:  (this.isLoggedIn)? 'Log In' : 'Log out', icon: 'mdi-login', to: '/login'},
-      { title: 'Sign Up', icon: 'mdi-account-plus', to: '/signup'}
+      { title: "Sign Up", icon: "mdi-account-plus", to: "/signup" },
     ],
     right: null,
+    username: localStorage.getItem("username"),
   }),
   created() {
     this.updateLoginStatus();
@@ -72,9 +99,17 @@ export default {
   computed: {
     ...mapGetters({
       isLoggedIn: "getLoggedInStatus",
+      user: "getUser",
     }),
   },
   methods: {
+    openUserProfile() {
+      this.$router.push({
+        path: "/user",
+        query: { userId: localStorage.getItem("userId") },
+      });
+    },
+
     updateLoginStatus() {
       this.loginStatus = localStorage.getItem("isLoggedIn") === "true";
     },
@@ -91,7 +126,6 @@ export default {
       });
 
       location.reload();
-
     },
   },
 };
@@ -106,12 +140,28 @@ export default {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-.logout-btn{
+.logout-btn {
   cursor: pointer;
-  transition: all .3s;
+  transition: all 0.3s;
 }
-.logout-btn:hover{
+.logout-btn:hover {
   color: white !important;
+  text-decoration: underline;
+}
+.loggedInUser {
+  color: gray;
+  font-size: small;
+}
+.loggedInUser:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: white;
+}
+.nav-bar-items {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.nav-bar-items-text:hover {
   text-decoration: underline;
 }
 .v-main__wrap {

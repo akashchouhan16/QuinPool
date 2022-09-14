@@ -77,15 +77,12 @@
                   </v-btn>
                 </template>
                 <v-card>
-                  <v-toolbar dark color="default">
+                  <v-toolbar dark color="black white--text">
                     <v-btn icon dark @click="dialog = false">
                       <v-icon>mdi-close</v-icon>
                     </v-btn>
                     <v-toolbar-title>Initiate Pool Ride</v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <v-toolbar-items>
-                      <v-btn dark text @click="dialog = false"> Close </v-btn>
-                    </v-toolbar-items>
+                    <!-- <v-spacer></v-spacer> -->
                   </v-toolbar>
                   <div class="selector">
                     <div class="select-date-time">
