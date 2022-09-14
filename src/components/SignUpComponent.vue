@@ -18,7 +18,7 @@
             <v-col lg="6" md="12" sm="12">
               <v-text-field
                 v-model="user.username"
-                :rules="nameRules"
+                :rules="userNameRules"
                 label="User Name"
                 required
               ></v-text-field>
@@ -77,7 +77,9 @@
                 label="Do you have a car"
                 required
               ></v-checkbox>
+              <span v-if="error" class="errortext ">Enter all the fields</span><br/>
             </v-col>
+           
             <v-row v-if="user.checkbox" cols="12" style="margin:-2px!important">
               <v-col lg="12" md="12" sm="12">
                 <v-text-field
@@ -156,7 +158,7 @@
             </v-menu>
             </v-row>
            
-            {{user.date}}
+          
 
             <div class="reg-button">
               <v-row cols="12">
@@ -172,6 +174,7 @@
                     >Register</v-btn
                   >
                 </v-col>
+               
                 <!-- <v-col lg="6" md="12" sm="12">
                   <v-btn
                     @click="goLogin()"

@@ -9,7 +9,7 @@ export const addUser = ({ success, error, object }) => {
   axios
     .post(api, object)
     .then((response) => {
-      Vue.$toast.error(response.response.data.message);
+      Vue.$toast.success("Registered Sucessfully");
 
       console.log(response)
       success && success(response)

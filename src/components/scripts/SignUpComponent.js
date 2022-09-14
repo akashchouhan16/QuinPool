@@ -46,14 +46,15 @@ export default {
       userNameRules:[
         value => !!value || 'userName is required',
         value => (value && value.length >= 5) || 'Min 5 characters',
-        value=>/^[a-zA-Z0-9 +/.]*$/.test(value)|| "user name must be valid",
+        value=>/[a-zA-Z0-9]*$/.test(value)|| "user name must be valid",
       ],
       
       phoneRules: [
         v => !!v || 'Phone is required',
      //   v => /.+@.+\..+/.test(v) || 'phone must be valid',
-     v=>(v&&v>=0)||"enter valid phone number",
+     v=>(v&&v>0)||"enter valid phone number",
      v=> (v && v.length == 10) || 'Invalid number',
+     value=>/[^.]$/.test(value)|| "user name must be valid",
       ],
       select: null,
       items: [
@@ -115,7 +116,7 @@ export default {
         },
         //  emailMatch: () => (`The email and password you entered don't match`),
         },
-     
+     error:false,
       vehicleNumber:'',
       seats:null,
       LicenseNumber:'',
@@ -166,6 +167,7 @@ export default {
             "vehicleNo": this.user.vehicle.vehicleNumber
           }
         }
+        if(this.user.name!=''&&this.user.username!=''&&this.user.phone!=''&&this.user.address!=''){
         addUser({
          success:(response)=>{
           console.log(response)
@@ -174,7 +176,11 @@ export default {
             console.log('error',e)
          },
          object:payload
-        })
+        })}
+        else{
+          this.error=true
+          console.log('enter all the fields')
+        }
       },
     },
     computed:{
