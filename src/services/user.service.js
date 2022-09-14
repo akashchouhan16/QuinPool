@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import Vue from 'vue';
 //import { resolve } from 'core-js/fn/promise';
 export const addUser = ({ success, error, object }) => {
   console.log("inside register", object)
@@ -8,10 +9,13 @@ export const addUser = ({ success, error, object }) => {
   axios
     .post(api, object)
     .then((response) => {
+      Vue.$toast.error(response.response.data.message);
 
       console.log(response)
       success && success(response)
     }).catch((e) => {
+      Vue.$toast.error(e.response.data.message);
+
       console.log('service errror', e)
       error && error(e)
     })
@@ -25,6 +29,7 @@ export const userLogin = ({ success, error, user }) => {
     }).
     catch((e) => {
       console.log(e)
+      Vue.$toast.error(e.response.data.message);
       error && error(e)
     })
 }
