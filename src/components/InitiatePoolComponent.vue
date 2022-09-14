@@ -7,7 +7,13 @@
         <div class="avatar">
           <img src="@/assets/seller-profile-img.jpeg" alt="Image" />
         </div>
-        <div class="meta-data">
+        <v-progress-circular
+          indeterminate
+          color="default"
+          v-if="spinLoader"
+          small
+        ></v-progress-circular>
+        <div class="meta-data" v-else>
           <div class="user-details">
             <p class="username-tag">
               <span class="user-greeting">Welcome, {{ userInfo.name }}!</span>
@@ -19,12 +25,12 @@
             </p>
           </div>
 
-          <p class="license-tag" v-if="userInfo.license">
-            License: {{ userInfo.license }}
-          </p>
-
           <div class="vehicle-details">
-            <div class="no-vehicle" v-if="!userInfo.hasVehicle" style="margin-left: 25%;">
+            <div
+              class="no-vehicle"
+              v-if="!userInfo.hasVehicle"
+              style="margin-left: 25%"
+            >
               No vehicle has been registered
             </div>
             <div class="vehicle-meta" v-else>
@@ -46,11 +52,6 @@
             </div>
           </div>
         </div>
-        <v-progress-circular
-          indeterminate
-          color="default"
-          v-if="spinLoader"
-        ></v-progress-circular>
       </div>
       <div class="user-initiate-div">
         <div class="map" id="map">
@@ -87,25 +88,32 @@
                     </v-toolbar-items>
                   </v-toolbar>
                   <div class="selector">
-                    <div class="select-date">
-                      <div class="select-date-tag">Pick A Date</div>
-                      <v-date-picker
-                        v-model="poolDate"
-                        color="black lighten-1"
-                        rounded="true"
-                        :min="new Date().toISOString().substr(0, 10)"
-                      ></v-date-picker>
-                    </div>
-                    <div class="select-time">
-                      <div class="select-time-tag">Select A Time</div>
-                      <v-time-picker
-                        v-model="poolTime"
-                        ampm-in-title
-                        format="ampm"
-                        landscape
-                        color="black lighten-1"
-                        rounded="true"
-                      ></v-time-picker>
+                    <div class="select-date-time">
+                      <div class="select-date">
+                        <div class="select-date-tag">Pick A Date</div>
+                        <v-date-picker
+                          v-model="poolDate"
+                          color="black lighten-1"
+                          width="280"
+                          height="90"
+                          rounded="true"
+                          :min="new Date().toISOString().substr(0, 10)"
+                          :max="getMaxDate()"
+                        ></v-date-picker>
+                      </div>
+
+                      <div class="select-time">
+                        <div class="select-time-tag">Select A Time</div>
+                        <v-time-picker
+                          v-model="poolTime"
+                          ampm-in-title
+                          format="ampm"
+                          width="280"
+                          color="black lighten-1"
+                          rounded="true"
+                          :min="validateTime"
+                        ></v-time-picker>
+                      </div>
                     </div>
                   </div>
                   <v-divider></v-divider>
@@ -114,10 +122,14 @@
                       Seating Capacity
                     </div>
                     <v-radio-group v-model="seatCapacity" row>
-                      <v-radio label="2 Seats" value="2">2 Seats</v-radio>
-                      <v-radio label="4 Seats" value="4">4 Seats</v-radio>
+                      <v-radio
+                        :label="index + 1 + ' seats'"
+                        :value="index + 1"
+                        v-for="(seat, index) in userInfo.vehicle.capacity - 1"
+                        :key="index"
+                      ></v-radio>
                     </v-radio-group>
-                    <v-btn color="default" @click="savePoolDetails()"
+                    <v-btn color="black white--text" @click="savePoolDetails()"
                       >Save</v-btn
                     >
                   </div>
@@ -289,8 +301,7 @@
   justify-content: center;
   align-items: center;
 }
-.select-date,
-.select-time,
+.select-date-time,
 .select-seating-capacity {
   background-color: whitesmoke;
   border-radius: 1em;
@@ -298,10 +309,22 @@
   height: 70vh;
   margin: 1rem;
   display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  /* overflow: scroll; */
+}
+
+.select-seating-capacity {
+  padding: 1rem;
+}
+
+.select-date,
+.select-time {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* overflow: scroll; */
 }
 .select-seating-capacity {
   width: 97%;
@@ -389,6 +412,19 @@
     background-color: whitesmoke;
     width: 95%;
     height: 40vh;
+  }
+
+  .select-date-time,
+  .select-seating-capacity {
+    background-color: whitesmoke;
+    border-radius: 1em;
+    width: 90%;
+    height: 120vh;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
   }
 }
 </style>

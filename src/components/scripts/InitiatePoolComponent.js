@@ -25,22 +25,21 @@ export default {
     preloaderComponent,
   },
   created() {
-
     setTimeout(() => {
       this.spinLoader = false;
     }, 2500);
-    
+
     getUser({
-      success: (response)=>{
+      success: (response) => {
         this.userInfo = response.data;
       },
-      error: (e)=>{
-        console.warn('Something went wrong while fetching details from backend.' + e);
+      error: (e) => {
+        console.warn(
+          "Something went wrong while fetching details from backend." + e
+        );
       },
-      object: localStorage.getItem('userId')
-    })
-
-
+      object: localStorage.getItem("userId"),
+    });
 
     this.getUserLocation();
     Vue.$toast.open({
@@ -50,8 +49,27 @@ export default {
     });
   },
   mixins: [preloaderMixin],
-  computed: {},
+  computed: {
+    validateTime() {
+      let time = "00:00";
+      if (
+        this.poolDate === null ||
+        this.poolDate.substr(8, 2) === new Date().toLocaleString().substr(0, 2)
+      ) {
+        //same date
+        time = new Date().toLocaleString().substr(11, 6);
+      }
+      console.log(time);
+      return time;
+    },
+  },
   methods: {
+    getMaxDate() {
+      let date = new Date();
+      date.setDate(date.getDate() + 7);
+
+      return date.toISOString().substr(0, 10);
+    },
     getUserLocation() {
       window.navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -120,7 +138,6 @@ export default {
     isValidTime() {
       console.warn(this.poolDate + "->" + this.poolDate.substr(8, 2));
 
-
       if (
         this.poolDate.substr(8, 2) !=
         new Date().toLocaleString().substring(0, 2)
@@ -134,7 +151,9 @@ export default {
 
         if (
           this.poolTime.substring(0, 2) <
-          new Date().toLocaleString().substr(12, 2) && (this.poolTime.substring(3,5) <= (new Date().toLocaleString().substr(15,2)))
+            new Date().toLocaleString().substr(12, 2) &&
+          this.poolTime.substring(3, 5) <=
+            new Date().toLocaleString().substr(15, 2)
         )
           return false;
         return true;
