@@ -8,7 +8,7 @@
           <v-list-item-subtitle
             v-if="isLoggedIn || loginStatus"
             @click="logOutUser()" class="logout-btn white--text"
-            >Log Out</v-list-item-subtitle
+            > <v-icon color="white" small>mdi-logout-variant</v-icon> Log Out</v-list-item-subtitle
           >
         </v-list-item-content>
       </v-list-item>
