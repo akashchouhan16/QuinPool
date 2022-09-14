@@ -1,17 +1,73 @@
 <template>
   <div>
      <div class="text-center">
+      <v-dialog
+      v-model="dialog1"
+      width="500">
+      <v-card>
+        <v-card-title>Change Password</v-card-title>
+        <v-card-text>
+          <v-form>
+            <v-row>
+              <v-col lg="12" md="12" sm="12">
+              <v-text-field
+              v-model="password.currentPassword"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show1 ? 'text' : 'password'"
+                name="input-10-1"
+                label="Current Password"
+               
+                @click:append="show1 = !show1"
+              ></v-text-field>
+            </v-col>
+            <v-col lg="6" md="12" sm="12">
+              <v-text-field
+              v-model="password.newPassword"
+                :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="[rules.required, rules.min,rules.pass,rules.max]"
+                :type="show1 ? 'text' : 'password'"
+                name="input-10-1"
+                label="New Password"
+            
+                @click:append="show3 = !show3"
+              ></v-text-field>
+            </v-col>
+            <v-col lg="6" md="12" sm="12">
+              <v-text-field
+              v-model="confirmPass"
+                :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
+              
+                :type="show1 ? 'text' : 'password'"
+                name="input-10-1"
+                label="Confirm Password"
+              
+                @click:append="show4= !show4"
+              ></v-text-field>
+              <span v-if="passwordCheck" class="errortext ">Password Doesnt match</span>
+            </v-col>
+              
+             
+              
+            </v-row>
+          </v-form>
+          <v-btn class="reg-button" style="background-color: black; color:white" @click="changePass()">
+            Change
+          </v-btn>
+        </v-card-text>
+      </v-card>
+   
+
+      
+    </v-dialog>
     <v-dialog
       v-model="dialog"
       width="500"
     >
-   
-
       <v-card>
+       
         <v-card-title class="text-h5 grey lighten-2">
           User Details
         </v-card-title>
-
         <v-card-text>
           <v-form>
         <v-row>
@@ -101,7 +157,6 @@
             color="primary"
             text
             @click="update()"
-            
           >
             Update
           </v-btn>
@@ -112,7 +167,10 @@
     <v-card elevation="2">
       <div class="user">
       <h3>User Details</h3>
-      <v-icon @click="dialog=true">{{ icons.mdiPencil }}</v-icon>
+      <div style="display:flex">
+      <p @click="pass()">change password</p>
+      <v-icon @click="dialog=true" style="color:blue">{{ icons.mdiPencil }}</v-icon>
+    </div>
       </div><br/>
         <v-row>
           <div>
@@ -180,6 +238,10 @@
 </script>
 
 <style>
+  .errortext {
+  color: red;
+  text-align: center;
+}
 .user{
       display: flex;
     justify-content: space-between;
@@ -210,4 +272,9 @@ form.v-form {
 .update{
   display:flex;
 }
+button.v-icon.notranslate.v-icon--link.theme--light {
+  margin-bottom:16px;
+  padding-left: 19px;
+}
+
 </style>

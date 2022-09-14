@@ -1,4 +1,4 @@
-import { getUser, updateUser } from '@/services/user.service'
+import { getUser, updateUser,changePassword } from '@/services/user.service'
 import rulesMixin from '@/mixins/rules.mixin'
 import {
     mdiAccount,
@@ -11,6 +11,10 @@ export default {
     data() {
 
         return {
+            show1: false,
+            show2: true,
+            show3: false,
+            show4: false,
             icons: {
                 mdiAccount,
                 mdiPencil,
@@ -18,8 +22,37 @@ export default {
                 mdiDelete,
             },
             dialog: false,
+            dialog1:false,
             user: {},
-            updateduser:{}
+            updateduser:{},
+            confirmPass:'',
+            passerror:false,
+            password:{
+                currentPassword:'',
+                newPassword:'',
+                userId:localStorage.getItem('userId')
+
+            },
+            rules: {
+                required: value => !!value || 'Required.',
+                min: v => v.length>= 5 || 'Min 5 characters',
+                max:v=>v.length<=20||'max 20 characters',
+                pass: v => {
+      
+                  const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
+      
+                  return (
+      
+                      pattern.test(v) ||
+      
+                      "Min 8 characters with at least one uppercase letter,a lowercase letter, a number and a special character"
+      
+                  );
+      
+              },
+              //  emailMatch: () => (`The email and password you entered don't match`),
+              },
+          
             
         }
     },
@@ -51,10 +84,35 @@ export default {
                 error: (e) => {
                     console.log(e)
                 },
+               
                 object: this.updateduser
             })
-        }
+        },
+        pass(){
+            this.dialog1=true
+        },
+        changePass(){
+            this.dialog1=false
+            console.log(this.password)
+            changePassword({
+                success: (response) => {
+                    console.log('pass',response)
+                    this.user = response.data
+                },
+                error: (e) => {
+                    console.log(e)
+                },
+                
+                object:this.password
+            })
+            this.password={
+                currentPassword:'',
+                newPassword:'',
+            },
+            this.confirmPass='';
 
+
+        }
     },
     created() {
 
@@ -69,5 +127,17 @@ export default {
             object: localStorage.getItem('userId')
         })
     },
-
+    computed:{
+        passwordCheck(){
+            if(this.password.newPassword!=this.confirmPass){
+                console.log('inside true')
+              this.passerror=true
+            }
+            else{
+              this.passerror=false
+              console.log('inside false')
+            }
+            return this.passerror
+          }
+    }
 }

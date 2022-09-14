@@ -58,6 +58,7 @@ export default{
                 value=>/^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-2])[0-9]{7}$/.test(value)|| "number must be valid",
                 
               ],
+             
         }
     }
 }
