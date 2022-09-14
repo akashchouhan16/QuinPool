@@ -21,6 +21,7 @@
           <v-col lg="6" md="12" sm="12">
             <v-text-field
               v-model="user.phoneNumber"
+              :rules="phoneRules"
               label="Phone"
               color="black "
             ></v-text-field>
@@ -28,9 +29,18 @@
         </v-row>
         <div v-if="user.hasVehicle">
           <v-row>
+            <v-col lg="6" md="12" sm="12">
+                <v-text-field
+                  v-model="user.license"
+                  :rules="LicenseNumberRules"
+                  label="License Number"
+                  required
+                ></v-text-field>
+              </v-col>
             <v-col lg="12" md="12" sm="12">
               <v-text-field
                 v-model="user.vehicle.name"
+                :rules="vehicleRules"
                 label="CarName"
                 color="black "
               ></v-text-field>
@@ -38,6 +48,7 @@
             <v-col lg="12" md="12" sm="12">
               <v-text-field
                 v-model="user.vehicle.brand"
+                :rules="vehicleRules"
                 label="Brand"
                 color="black "
               ></v-text-field>
@@ -46,6 +57,7 @@
             <v-col lg="12" md="12" sm="12">
               <v-text-field
                 v-model="user.vehicle.color"
+                :rules="colorRules"
                 label="Color"
                 color="black "
               ></v-text-field>
@@ -53,6 +65,7 @@
             <v-col lg="12" md="12" sm="12">
               <v-text-field
                 v-model="user.vehicle.vehicleNo"
+                :rules="numberrules"
                 label="Vehicle Number"
                 color="black "
               ></v-text-field>
@@ -61,6 +74,7 @@
               <v-text-field
                 v-model="user.vehicle.capacity"
                 label="Number of Seats"
+                :rules="seatingRules"
                 color="black "
               ></v-text-field>
             </v-col>
@@ -72,6 +86,7 @@
           dense
           filled
           name="input-7-4"
+          :rules="addressrules"
           label="Address"
           v-model="user.address"
         ></v-textarea>
@@ -85,7 +100,8 @@
           <v-btn
             color="primary"
             text
-            @click="dialog = false"
+            @click="update()"
+            
           >
             Update
           </v-btn>
@@ -108,6 +124,9 @@
         <div v-if="user.hasVehicle">
           
           <v-row>
+            <v-card-text
+              >License Number:{{user.license}}</v-card-text>
+                <v-card-text>Brand:{{user.vehicle.brand}}</v-card-text>
               <v-card-text
               >Vehicle Name:{{user.vehicle.name}}</v-card-text>
                 <v-card-text>Brand:{{user.vehicle.brand}}</v-card-text>

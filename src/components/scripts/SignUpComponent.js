@@ -76,7 +76,7 @@ export default {
       vehicleRules: [
         value => !!value || 'Name is required',
         value => (value && value.length >= 3) || 'Min 3 characters',
-        value=>/^[a-zA-Z ]*$/.test(value)|| "name must be valid",
+        value=>/^[a-zA-Z0-9 ]*$/.test(value)|| "name must be valid",
        // v => (v && v.length <= 10) || 'Name must be less than 10 characters',
       ],
       colorRules:[

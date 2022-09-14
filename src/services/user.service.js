@@ -46,3 +46,18 @@ export const getUser=({success,error,object})=>{
     })
 
 }
+export const updateUser=({success,error,object})=>{
+  const api="http://10.30.1.91:8082/users/update"
+  axios.put(api,object)
+  .then((response)=>{
+      console.log('update',response)
+      Vue.$toast.success("updated successfully");
+      success && success(response)
+  })
+  .catch((e)=>{
+     // console.log(e)
+      Vue.$toast.error(e.response.data.message);
+      error && error(e)
+  })
+
+}
