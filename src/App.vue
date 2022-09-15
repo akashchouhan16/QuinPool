@@ -95,6 +95,7 @@ export default {
   }),
   created() {
     this.updateLoginStatus();
+    // this.$store.dispatch("GET_USER", localStorage.getItem("userId"));
   },
   computed: {
     ...mapGetters({

@@ -12,6 +12,7 @@ export default {
         latitude: null,
         longitude: null,
       },
+      locations: ["Caledon Square", "Syndicate Space", "399, Tidel Park"],
       userInfo: {},
       spinLoader: true,
       poolDate: null,
@@ -29,6 +30,7 @@ export default {
       this.spinLoader = false;
     }, 2500);
 
+    const userId = localStorage.getItem("userId");
     getUser({
       success: (response) => {
         this.userInfo = response.data;
@@ -38,7 +40,7 @@ export default {
           "Something went wrong while fetching details from backend." + e
         );
       },
-      object: localStorage.getItem("userId"),
+      object: userId,
     });
 
     this.getUserLocation();
@@ -87,11 +89,11 @@ export default {
       );
     },
     initMap() {
-      let map = new window.google.maps.Map(document.getElementById("map"), {
+      new window.google.maps.Map(document.getElementById("map"), {
         center: { lat: this.user.latitude, lng: this.user.longitude },
         zoom: 19,
       });
-      console.log(map);
+
       console.warn("initMap() involked");
     },
     savePoolDetails() {

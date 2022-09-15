@@ -17,6 +17,8 @@ export const checkForLoginInitiate = (to, from, next) => {
     username === ""
   ) {
     next({ path: "/login", query: { redirect: `/initiatepool` } });
+    this.$store.dispatch("GET_USER");
+    console.warn("dispatch: GET_USER called upon redirect from login");
   } else {
     next();
   }

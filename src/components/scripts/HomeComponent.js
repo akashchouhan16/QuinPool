@@ -12,6 +12,9 @@ export default {
     preloaderComponent,
   },
   mixins: [preloaderMixin],
+  created() {
+    this.$store.dispatch("GET_USER", localStorage.getItem("userId"));
+  },
   methods: {
     completeSetUp() {
       Vue.$toast.warning("Setup could not be complete");

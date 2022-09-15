@@ -58,13 +58,26 @@
           <v-btn @click="getUserLocation()">Locate Me!</v-btn>
         </div>
         <div class="form">
-          <v-progress-circular
-            indeterminate
-            color="default"
-            v-if="spinLoader"
-          ></v-progress-circular>
-          <div v-else>
-            <v-row justify="center">
+          <div class="form-inner">
+            <v-progress-circular
+              indeterminate
+              color="default"
+              v-if="spinLoader"
+            ></v-progress-circular>
+            <div class="dropdown-locations" style="color: black" v-else>
+              <v-select :items="locations" label="Source" dense></v-select>
+              <v-select :items="locations" label="Destination" dense></v-select>
+              <v-btn
+                color="success"
+                dark
+                class="init-ride-btn"
+                :disabled="!isInitiateBtnActive"
+                v-if="isInitiateBtnActive"
+                @click="initiatePool()"
+                >Initiate Ride</v-btn
+              >
+            </div>
+            <div justify="center">
               <v-dialog
                 v-model="dialog"
                 fullscreen
@@ -133,15 +146,7 @@
                   <v-divider></v-divider>
                 </v-card>
               </v-dialog>
-            </v-row>
-            <v-btn
-              color="success"
-              dark
-              class="init-ride-btn"
-              :disabled="!isInitiateBtnActive"
-              @click="initiatePool()"
-              >Initiate Ride</v-btn
-            >
+            </div>
           </div>
         </div>
       </div>
@@ -281,8 +286,29 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+}
+.form-inner {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.form-inner .dropdown-locations {
+  /* height: 60%; */
+  padding: 2rem;
+  width: 95%;
+  border-radius: 1em;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 .init-ride-btn {
   margin: 1.5rem !important;
@@ -333,7 +359,7 @@
   font-size: medium;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 850px) {
   .user-header .avatar {
     padding: 0.5rem;
   }

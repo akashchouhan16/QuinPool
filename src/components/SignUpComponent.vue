@@ -27,7 +27,7 @@
               <v-text-field
                 v-model="user.password"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.min,rules.pass,rules.max]"
+                :rules="[rules.required, rules.min, rules.pass, rules.max]"
                 :type="show1 ? 'text' : 'password'"
                 name="input-10-1"
                 label="Password"
@@ -39,7 +39,7 @@
               <v-text-field
                 v-model="user.cpassword"
                 :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required,rules.pass,rules.max]"
+                :rules="[rules.required, rules.pass, rules.max]"
                 :type="show4 ? 'text' : 'password'"
                 name="input-10-2"
                 label="Confirm Password"
@@ -77,10 +77,15 @@
                 label="Do you have a car"
                 required
               ></v-checkbox>
-              <span v-if="error" class="errortext ">Enter all the fields</span><br/>
+              <span v-if="error" class="errortext">Enter all the fields</span
+              ><br />
             </v-col>
-           
-            <v-row v-if="user.checkbox" cols="12" style="margin:-2px!important">
+
+            <v-row
+              v-if="user.checkbox"
+              cols="12"
+              style="margin: -2px !important"
+            >
               <v-col lg="12" md="12" sm="12">
                 <v-text-field
                   v-model="user.vehicle.vehicleNumber"
@@ -129,36 +134,37 @@
                   required
                 ></v-text-field>
               </v-col>
-               <v-menu 
-              v-if="user.checkbox"
-              ref="menu"
-              v-model="menu"
-              :close-on-content-click="false"
-              transition="scale-transition"
-              offset-y
-              min-width="auto"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-text-field lg="6" md="12" sm="12"
+              <v-menu
+                v-if="user.checkbox"
+                ref="menu"
+                v-model="menu"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                min-width="auto"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    lg="6"
+                    md="12"
+                    sm="12"
+                    v-model="user.date"
+                    label="Valid Till"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
                   v-model="user.date"
-                  label="Valid Till"
-                  prepend-icon="mdi-calendar"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                v-model="user.date"
-                :active-picker.sync="activePicker"
-                max="2090-01-01"
-                :min="new Date().toISOString().slice(0, 10)"
-                @change="save"
-              ></v-date-picker>
-            </v-menu>
+                  :active-picker.sync="activePicker"
+                  max="2090-01-01"
+                  :min="new Date().toISOString().slice(0, 10)"
+                  @change="save"
+                ></v-date-picker>
+              </v-menu>
             </v-row>
-           
-          
 
             <div class="reg-button">
               <v-row cols="12">
@@ -174,7 +180,7 @@
                     >Register</v-btn
                   >
                 </v-col>
-               
+
                 <!-- <v-col lg="6" md="12" sm="12">
                   <v-btn
                     @click="goLogin()"
@@ -230,13 +236,11 @@
   color: red;
   text-align: center;
 }
-.v-input.v-input--is-readonly.theme--light.v-text-field.v-text-field--is-booted{
+.v-input.v-input--is-readonly.theme--light.v-text-field.v-text-field--is-booted {
   margin-top: 14px;
 }
-rounded.theme--light.elevation-2.v-size--default.black {
-  /* border-radius: 0px!important; */
-}
+
 .v-btn--rounded {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 </style>
