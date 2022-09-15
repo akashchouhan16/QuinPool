@@ -31,12 +31,15 @@
             <v-btn
               :disabled="!valid"
               color="success"
-              class="mr-4" small
+              class="mr-4"
+              small
               @click="validate()"
             >
               Login
             </v-btn>
-            <v-btn small color="error" class="mr-4"  @click="reset"> Reset </v-btn>
+            <v-btn small color="error" class="mr-4" @click="reset">
+              Reset
+            </v-btn>
           </div>
         </div>
       </v-form>
@@ -59,7 +62,7 @@
   border-radius: 1em;
   width: 40%;
   height: 45vh;
-  min-height:350px;
+  min-height: 350px;
   font-size: small;
 }
 .centre {
@@ -72,11 +75,10 @@
   margin-bottom: 30px;
   margin-top: 35px;
   font-size: small;
-
 }
 .login-heading {
-    display:flex;
-    flex-flow:row nowrap;
+  display: flex;
+  flex-flow: row nowrap;
 }
 @media screen and (min-width: 450px) and (max-width: 1000px) {
   .login-container {

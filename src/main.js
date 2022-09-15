@@ -13,15 +13,11 @@ Vue.use(VueToast, {
 
 import router from "@/router/index.js";
 import store from "@/store/index";
+import { filterUIAddress } from "@/utils/filter.utils.js";
 
 Vue.config.productionTip = false;
 
-Vue.filter("filterUIAddress", (address) => {
-  if (address.length <= 40) return address;
-  else {
-    return address.substring(0, 40) + "..";
-  }
-});
+Vue.filter("filterUIAddress", filterUIAddress);
 
 new Vue({
   vuetify,
