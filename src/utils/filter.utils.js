@@ -1,6 +1,6 @@
 export const filterUIAddress = (address) => {
-  if (address.length <= 30) return address;
+  if (address.length <= 20) return address;
   else {
-    return address.substring(0, 30) + "..";
+    return address.substring(0, 25) + "+";
   }
 };

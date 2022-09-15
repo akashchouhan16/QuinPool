@@ -87,7 +87,6 @@ export default {
       { title: "Home", icon: "mdi-home", to: "/" },
       { title: "Find Pool", icon: "mdi-car-search-outline", to: "/findpool" },
       { title: "Initiate Pool", icon: "mdi-car-3-plus", to: "/initiatepool" },
-      // { title:  (this.isLoggedIn)? 'Log In' : 'Log out', icon: 'mdi-login', to: '/login'},
       { title: "Sign Up", icon: "mdi-account-plus", to: "/signup" },
     ],
     right: null,
@@ -95,7 +94,7 @@ export default {
   }),
   created() {
     this.updateLoginStatus();
-    // this.$store.dispatch("GET_USER", localStorage.getItem("userId"));
+    this.getUserOnCreated();
   },
   computed: {
     ...mapGetters({
@@ -104,6 +103,12 @@ export default {
     }),
   },
   methods: {
+    getUserOnCreated() {
+      const userId = localStorage.getItem("userId");
+      if (userId !== undefined || userId !== null || userId !== "") {
+        this.$store.dispatch("GET_USER", userId);
+      }
+    },
     openUserProfile() {
       this.$router.push({
         path: "/user",

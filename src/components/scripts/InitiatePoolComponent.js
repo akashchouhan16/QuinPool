@@ -1,4 +1,5 @@
 import preloaderMixin from "@/mixins/preloader.mixin";
+import mapsMixin from "@/mixins/maps.mixin";
 import preloaderComponent from "@/components/customComponent/preloaderComponent.vue";
 import Vue from "vue";
 
@@ -8,10 +9,6 @@ export default {
   name: "InitiatePoolComponent",
   data() {
     return {
-      user: {
-        latitude: null,
-        longitude: null,
-      },
       locations: ["Caledon Square", "Syndicate Space", "399, Tidel Park"],
       userInfo: {},
       spinLoader: true,
@@ -50,7 +47,7 @@ export default {
       duration: 2000,
     });
   },
-  mixins: [preloaderMixin],
+  mixins: [preloaderMixin, mapsMixin],
   computed: {
     validateTime() {
       let time = "00:00";
@@ -72,30 +69,6 @@ export default {
 
       return date.toISOString().substr(0, 10);
     },
-    getUserLocation() {
-      window.navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.table({
-            latitude: position.coords.latitude,
-            longitute: position.coords.longitude,
-          });
-          this.user.latitude = position.coords.latitude;
-          this.user.longitude = position.coords.longitude;
-          this.initMap();
-        },
-        (error) => {
-          console.error(error.message);
-        }
-      );
-    },
-    initMap() {
-      new window.google.maps.Map(document.getElementById("map"), {
-        center: { lat: this.user.latitude, lng: this.user.longitude },
-        zoom: 19,
-      });
-
-      console.warn("initMap() involked");
-    },
     savePoolDetails() {
       if (
         this.seatCapacity === null ||
@@ -108,8 +81,6 @@ export default {
         });
         this.isInitiateBtnActive = false;
       } else if (!this.isValidTime()) {
-        // console.warn(this.poolTime);
-        // console.warn(new Date().toLocaleString().substring(12,2));
         Vue.$toast.open({
           message: "Invalid Time!",
           type: "error",

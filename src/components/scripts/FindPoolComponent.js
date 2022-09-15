@@ -1,73 +1,44 @@
 import preloaderMixin from "@/mixins/preloader.mixin";
-import preloaderComponent from '@/components/customComponent/preloaderComponent.vue'
+import mapsMixin from "@/mixins/maps.mixin";
+import preloaderComponent from "@/components/customComponent/preloaderComponent.vue";
 import Vue from "vue";
-
 
 export default {
   name: "FindPoolComponent",
   data() {
     return {
-      user: {
-        latitude: null,
-        longitude: null,
-      },
       fav: true,
       menu: false,
       message: false,
       hints: true,
     };
   },
-  components:{
-    preloaderComponent
+  components: {
+    preloaderComponent,
   },
-  mixins: [preloaderMixin],
+  mixins: [preloaderMixin, mapsMixin],
   created() {
     this.getUserLocation();
     Vue.$toast.open({
-      message: 'Finding nearby pool rides...',
-      type: 'default',
-      duration: 2000
-    })
+      message: "Finding nearby pool rides...",
+      type: "default",
+      duration: 2000,
+    });
   },
   methods: {
-    toggleMenu(){
-        this.menu = !this.menu;
-        return this.menu;
-    },
-    getUserLocation() {
-      window.navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.table({
-            latitude: position.coords.latitude,
-            longitute: position.coords.longitude,
-          });
-          this.user.latitude = position.coords.latitude;
-          this.user.longitude = position.coords.longitude;
-
-          this.initMap();
-        },
-        (error) => {
-          console.error(error.message);
-        }
-      );
+    toggleMenu() {
+      this.menu = !this.menu;
+      return this.menu;
     },
     resetUserLocation() {
       this.user.latitude = this.user.longitude = null;
     },
-    initMap() {
-      let map = new window.google.maps.Map(document.getElementById("map"), {
-        center: { lat: this.user.latitude, lng: this.user.longitude },
-        zoom: 19,
+    bookPoolRide() {
+      Vue.$toast.open({
+        message: "Pool Ride Booked!",
+        type: "success",
+        duration: 2000,
       });
-      console.log(map);
-      console.warn("initMap() involked");
     },
-    bookPoolRide(){
-        Vue.$toast.open({
-            message: 'Pool Ride Booked!',
-            type: "success",
-            duration: 2000
-        })
-    }
   },
 };

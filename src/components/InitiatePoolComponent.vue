@@ -214,6 +214,7 @@
   background-color: whitesmoke;
   width: 45%;
   height: 95%;
+  overflow: hidden;
 }
 .user-details .username-tag {
   display: flex;
