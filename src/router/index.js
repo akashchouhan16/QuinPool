@@ -14,63 +14,13 @@ import PoolConfirmedComponent from "@/components/PoolConfirmedComponent.vue";
 import ErrorComponent from "@/components/ErrorComponent.vue";
 
 /* Define methods for router guard */
-const checkForLoginInitiate = (to, from, next) => {
-  const userId = localStorage.getItem("userId");
-  const username = localStorage.getItem("username");
-  const token = localStorage.getItem("token");
 
-  if (
-    token === null ||
-    token === undefined ||
-    token === "" ||
-    userId === null ||
-    userId === undefined ||
-    userId === "" ||
-    username === null ||
-    username === undefined ||
-    username === ""
-  ) {
-    next({ path: "/login", query: { redirect: `/initiatepool` } });
-  } else {
-    next();
-  }
-};
-
-const checkForLoginFind = (to, from, next) => {
-  const userId = localStorage.getItem("userId");
-  const username = localStorage.getItem("username");
-  const token = localStorage.getItem("token");
-
-  if (
-    token === null ||
-    token === undefined ||
-    token === "" ||
-    userId === null ||
-    userId === undefined ||
-    userId === "" ||
-    username === null ||
-    username === undefined ||
-    username === ""
-  ) {
-    next({ path: "/login", query: { redirect: `/findpool` } });
-  } else {
-    next();
-  }
-};
-const isAlreadyLoggedIn = (to, from, next) => {
-  const userId = localStorage.getItem("userId");
-  if (userId === undefined || userId === null || userId === "") {
-    next();
-  } else {
-    Vue.$toast.open({
-      message: `You are already logged In as ${localStorage.getItem(
-        "username"
-      )}`,
-      type: "default",
-    });
-    next({ path: "/" });
-  }
-};
+import {
+  checkForLoginFind,
+  checkForLoginInitiate,
+  isAlreadyLoggedIn,
+  isNotLoggedIn,
+} from "@/utils/router.utils";
 
 /* Define router */
 const routes = [
@@ -102,14 +52,17 @@ const routes = [
   {
     path: "/history",
     component: UserRideHistoryComponent,
+    beforeEnter: isNotLoggedIn,
   },
   {
     path: "/user",
     component: UserComponent,
+    beforeEnter: isNotLoggedIn,
   },
   {
     path: "/initiatepool/confirmation",
     component: PoolConfirmedComponent,
+    beforeEnter: isNotLoggedIn,
   },
   {
     path: "/notfound",
