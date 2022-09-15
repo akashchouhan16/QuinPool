@@ -167,8 +167,8 @@
     <v-card elevation="2">
       <div class="user">
       <h3>User Details</h3>
-      <div style="display:flex">
-      <p @click="pass()">change password</p>
+      <div class="change">
+      <p @click="pass()" class="high">change password</p>
       <v-icon @click="dialog=true" style="color:blue">{{ icons.mdiPencil }}</v-icon>
     </div>
       </div><br/>
@@ -274,7 +274,22 @@ form.v-form {
 }
 button.v-icon.notranslate.v-icon--link.theme--light {
   margin-bottom:16px;
-  padding-left: 19px;
+  /* padding-left: 19px; */
 }
-
+.change{
+display:flex;
+      width: 30%;
+    font-size: x-small;
+    margin-right: 1rem;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+}
+p:hover
+{
+text-decoration: underline;
+color:blue;
+}
 </style>
