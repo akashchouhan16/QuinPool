@@ -11,6 +11,7 @@ import SignUpComponent from "@/components/SignUpComponent.vue";
 import UserRideHistoryComponent from "@/components/UserRideHistoryComponent.vue";
 import UserComponent from "@/components/UserComponent.vue";
 import PoolConfirmedComponent from "@/components/PoolConfirmedComponent.vue";
+import ErrorComponent from "@/components/ErrorComponent.vue";
 
 /* Define methods for router guard */
 const checkForLoginInitiate = (to, from, next) => {
@@ -56,10 +57,26 @@ const checkForLoginFind = (to, from, next) => {
     next();
   }
 };
+const isAlreadyLoggedIn = (to, from, next) => {
+  const userId = localStorage.getItem("userId");
+  if (userId === undefined || userId === null || userId === "") {
+    next();
+  } else {
+    Vue.$toast.open({
+      message: `You are already logged In as ${localStorage.getItem(
+        "username"
+      )}`,
+      type: "default",
+    });
+    next({ path: "/" });
+  }
+};
+
 /* Define router */
 const routes = [
   {
     path: "/",
+    name: "Home",
     component: HomeComponent,
   },
   {
@@ -75,15 +92,16 @@ const routes = [
   {
     path: "/login",
     component: LoginComponent,
+    beforeEnter: isAlreadyLoggedIn,
   },
   {
     path: "/signup",
     component: SignUpComponent,
+    beforeEnter: isAlreadyLoggedIn,
   },
   {
     path: "/history",
     component: UserRideHistoryComponent,
-    // beforeEnter: checkForLogin
   },
   {
     path: "/user",
@@ -92,6 +110,14 @@ const routes = [
   {
     path: "/initiatepool/confirmation",
     component: PoolConfirmedComponent,
+  },
+  {
+    path: "/notfound",
+    component: ErrorComponent,
+  },
+  {
+    path: "/*",
+    redirect: "/notfound",
   },
 ];
 
