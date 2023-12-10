@@ -10,8 +10,10 @@
   "dependencies": {
     "@mdi/js": "^7.0.96",
     "axios": "^0.27.2",
+    "blumea": "^1.1.2",
     "core-js": "^3.8.3",
     "date-fns": "^2.29.2",
+    "nodecache.js": "^1.2.2",
     "vee-validate": "^4.6.7",
     "vue": "^2.6.14",
     "vue-router": "^3.6.5",
